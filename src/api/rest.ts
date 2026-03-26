@@ -97,6 +97,12 @@ export async function apiGenerateQuestion(prompt: string) {
   return { res, json: await res.json() };
 }
 
+export async function apiGetAccessLog() {
+  const headers = await authHeaders();
+  const res = await fetch(`${BACKEND_BASE_URI}/api/access-log`, { headers });
+  return { res, json: await res.json() };
+}
+
 export async function apiGetQuizPdf(id: number): Promise<string> {
   const token = await getToken();
   return `${BACKEND_BASE_URI}/api/quiz/${id}/pdf?token=${token}`;
